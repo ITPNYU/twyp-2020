@@ -8,7 +8,7 @@ A repository for materials related to the collaboration with GMTWP and the Games
  * Site has a constant webSocket connection to all clients
  * Site has a stage manager interface for managing chat, announcements, audio stream, etc. 
  
-## Command Line Interface
+## Command Line Interface (aka CLI page)
 * Green on black or amber on black color scheme
 * monospaced font
 * no internal scroll bars
@@ -21,3 +21,11 @@ A repository for materials related to the collaboration with GMTWP and the Games
    * alert/announcements - not editable. Where announcements from network appear
    * audio stream - not visible, probably no controls
    * images - ASCII art if possible, appearances are short and ephemeral
+
+## To Do list
+* add a streaming audio object example
+* add ASCII-fied images examples
+* add menu to CLI page
+* work out keyboard navigation for CLI page
+* make HTML links clickable in CLI page
+* work out how to push HTML objects to CLI from server
