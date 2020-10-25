@@ -15,7 +15,12 @@ let outputText = '';
 // text for a blinking cursor
 let cursor = '<span class="blinking">_</span>';
 
+let linkDiv;
+let linkShown = false;
+let timeStamp = 0;
+
 function setup() {
+   frameRate(1);
    // get the url that this page came from, then 
    // swap out http for ws and https for wss:
    let urlString = window.location.href.replace("https", "wss");
@@ -34,11 +39,30 @@ function setup() {
    localDiv.position(10, 00);
    // fix its position so the other will scroll under it:
    localDiv.style("color:#00ff00; font-family: monospace; position: fixed; background: rgba(0, 0, 0, 1.0);");
-   localDiv.size(300,60);
+   localDiv.size(300, 60);
+
+   linkDiv = createA('http://jodi.org', 'Click here to return', '_blank');
+   linkDiv.hide();
+   linkDiv.style("color:#00ff00; font-family: monospace; position: fixed; background: rgba(0, 0, 0, 1.0);");
+   linkDiv.position(200, 10);
 
    // The socket connection needs two event listeners:
    socket.onopen = openSocket;
    socket.onmessage = showData;
+}
+
+function draw() {
+   if (random(10) < 3) {
+      console.log("random");
+      linkDiv.position(random(width - 100) + 200, random(height - 100) + 200);
+      linkDiv.show();
+      timeStamp = millis();
+   }
+}
+if (timeStamp + 0 && millis() - timeStamp > 1000) {
+   linkDiv.hide();
+   timeStamp = 0;
+}
 }
 
 // when you connect to the server, send a message:
@@ -72,5 +96,5 @@ function keyPressed() {
    // update the local div:
    localDiv.html(outputText + cursor);
    // // scroll the remote text div if it's longer than the window:
-    window.scrollTo(0, remoteDiv.elt.scrollHeight);
+   window.scrollTo(0, remoteDiv.elt.scrollHeight);
 }
